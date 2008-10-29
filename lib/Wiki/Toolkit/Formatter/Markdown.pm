@@ -6,18 +6,20 @@ use Text::Markdown;
 has args => (
     isa        => 'HashRef',
     is         => 'ro',
-    lazy       => 1,
     auto_deref => 1,
-    default    => sub { {} },
+    lazy_build => 1,
 );
 
+sub _build_args { {} }
+
 has markdown => (
-    isa     => 'Text::Markdown',
-    is      => 'ro',
-    lazy    => 1,
-    default => sub { Text::Markdown->new( $_[0]->args ) },
-    handles => { format => 'markdown' },
+    isa        => 'Text::Markdown',
+    is         => 'ro',
+    lazy_build => 1,
+    handles    => { format => 'markdown' },
 );
+
+sub _build_markdown { Text::Markdown->new( $_[0]->args ) }
 
 1;
 

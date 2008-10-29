@@ -1,6 +1,6 @@
 package Wiki::Toolkit::Formatter::Markdown;
 use Mouse;
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 use Text::Markdown;
 
 has args => (

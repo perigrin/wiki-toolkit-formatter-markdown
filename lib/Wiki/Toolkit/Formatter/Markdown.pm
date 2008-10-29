@@ -14,9 +14,9 @@ has args => (
 has markdown => (
     isa     => 'Text::Markdown',
     is      => 'ro',
-    handles => { format => 'markdown' },
     lazy    => 1,
     default => sub { Text::Markdown->new( $_[0]->args ) },
+    handles => { format => 'markdown' },
 );
 
 1;
@@ -38,97 +38,56 @@ This document describes Wiki::Toolkit::Formatter::Markdown version 0.0.1
 =head1 SYNOPSIS
 
     use Wiki::Toolkit::Formatter::Markdown;
-
-=for author to fill in:
-    Brief code example(s) here showing commonest usage(s).
-    This section will be as far as many users bother reading
-    so make it as educational and exeplary as possible.
+    my $store     = Wiki::Toolkit::Store::SQLite->new( ... );
+    my $formatter = Wiki::Toolkit::Formatter::Markdown->new( );
+    my $wiki      = Wiki::Toolkit->new( store     => $store,
+                                        formatter => $formatter );
+    
   
   
 =head1 DESCRIPTION
 
-=for author to fill in:
-    Write a full description of the module and its features here.
-    Use subsections (=head2, =head3) as appropriate.
+A formatter backend for L<Wiki::Toolkit> using  L<Text::Markdown>.
 
+=head1 METHODS 
 
-=head1 INTERFACE 
+=over 4
 
-=for author to fill in:
-    Write a separate section listing the public components of the modules
-    interface. These normally consist of either subroutines that may be
-    exported, or methods that may be called on objects belonging to the
-    classes provided by the module.
+=item new (Hash|HashRef)
 
+Create a new Wiki::Toolkit::Formatter::Markdown, takes exactly two parameters
 
-=head1 DIAGNOSTICS
+=over 4 
 
-=for author to fill in:
-    List every single error and warning message that the module can
-    generate (even the ones that will "never happen"), with a full
-    explanation of each problem, one or more likely causes, and any
-    suggested remedies.
+=item args (HashRef)
 
-=over
+Arguments passed to the Text::Markdown object
 
-=item C<< Error message here, perhaps with %s placeholders >>
+=item markdown (Text::Markdown)
 
-[Description of error here]
-
-=item C<< Another error message here >>
-
-[Description of error here]
-
-[Et cetera, et cetera]
+You can supply your own Text::Markdown object. This must be a subclass of Text::Markdown.
 
 =back
 
+=item format (Str)
+
+Will take a string of Markdown formatted text, and return the HTML transformation.
+
+=back 
 
 =head1 CONFIGURATION AND ENVIRONMENT
 
-=for author to fill in:
-    A full explanation of any configuration system(s) used by the
-    module, including the names and locations of any configuration
-    files, and the meaning of any environment variables or properties
-    that can be set. These descriptions must also include details of any
-    configuration language used.
-  
 Wiki::Toolkit::Formatter::Markdown requires no configuration files or environment variables.
-
 
 =head1 DEPENDENCIES
 
-=for author to fill in:
-    A list of all the other modules that this module relies upon,
-    including any restrictions on versions, and an indication whether
-    the module is part of the standard Perl distribution, part of the
-    module's distribution, or must be installed separately. ]
-
-None.
-
+Mouse, Text::WikiFormat
 
 =head1 INCOMPATIBILITIES
 
-=for author to fill in:
-    A list of any modules that this module cannot be used in conjunction
-    with. This may be due to name conflicts in the interface, or
-    competition for system or program resources, or due to internal
-    limitations of Perl (for example, many modules that use source code
-    filters are mutually incompatible).
-
 None reported.
 
-
 =head1 BUGS AND LIMITATIONS
-
-=for author to fill in:
-    A list of known problems with the module, together with some
-    indication Whether they are likely to be fixed in an upcoming
-    release. Also a list of restrictions on the features the module
-    does provide: data types that cannot be handled, performance issues
-    and the circumstances in which they may arise, practical
-    limitations on the size of data sets, special cases that are not
-    (yet) handled, etc.
 
 No bugs have been reported.
 
@@ -136,11 +95,9 @@ Please report any bugs or feature requests to
 C<bug-wiki-toolkit-formatter-markdown@rt.cpan.org>, or through the web interface at
 L<http://rt.cpan.org>.
 
-
 =head1 AUTHOR
 
 Chris Prather  C<< <perigrin@cpan.org> >>
-
 
 =head1 LICENCE AND COPYRIGHT
 

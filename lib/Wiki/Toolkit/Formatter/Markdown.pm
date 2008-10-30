@@ -29,7 +29,7 @@ __END__
 
 =head1 NAME
 
-Wiki::Toolkit::Formatter::Markdown - [One line description of module's purpose here]
+Wiki::Toolkit::Formatter::Markdown - A Markdown Formatter for Wiki::Toolkit wikis.
 
 
 =head1 VERSION

@@ -1,5 +1,5 @@
 package Wiki::Toolkit::Formatter::MultiMarkdown;
-use Mouse;
+use Squirrel;
 use Text::MultiMarkdown;
 
 extends qw(Wiki::Toolkit::Formatter::Markdown);

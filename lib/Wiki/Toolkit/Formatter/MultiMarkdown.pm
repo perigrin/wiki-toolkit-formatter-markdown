@@ -1,6 +1,8 @@
 package Wiki::Toolkit::Formatter::MultiMarkdown;
 use Mouse;
-extends qw(Wiki::Toolkit::Formatter::Markdown)
+use Text::MultiMarkdown;
+
+extends qw(Wiki::Toolkit::Formatter::Markdown);
 
 has markdown => (
     isa        => 'Text::MultiMarkdown',
